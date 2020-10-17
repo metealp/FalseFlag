@@ -23,7 +23,7 @@ struct ContentView: View {
             VStack(alignment: .center, spacing: 30) {
                 VStack {
                     Text("Tap the flag of fallen country")
-                        .foregroundColor(.white)
+                        .bolder()
                         .padding()
                     Text(countries[correctAnswer])
                         .foregroundColor(.white)
@@ -41,9 +41,7 @@ struct ContentView: View {
                 }
                 Spacer()
                 Text("Your score is \(score)")
-                    .foregroundColor(.white)
-                    .font(.title3)
-                    .fontWeight(.black)
+                    .bolder()
             }
             .alert(isPresented: $showingScore) {
                 Alert(title: Text(scoreTitle), message: Text("Wrong! That’s the flag of \(countries[tappedFlagIndex])"), dismissButton: .default(Text("Continue")) {
