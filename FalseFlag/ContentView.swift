@@ -14,6 +14,7 @@ var correctAnswer = Int.random(in: 0...2)
 struct ContentView: View {
     @State private var showingScore = false
     @State private var scoreTitle = ""
+    @State private var scoreMessage = ""
     @State private var score: Int = 0
     @State private var tappedFlagIndex: Int = 0
     var body: some View {
@@ -44,7 +45,7 @@ struct ContentView: View {
                     .bolder()
             }
             .alert(isPresented: $showingScore) {
-                Alert(title: Text(scoreTitle), message: Text("Wrong! That’s the flag of \(countries[tappedFlagIndex])"), dismissButton: .default(Text("Continue")) {
+                Alert(title: Text(scoreTitle), message: Text(scoreMessage), dismissButton: .default(Text("Continue")) {
                     self.askQuestion()
                 })
             }
@@ -54,10 +55,12 @@ struct ContentView: View {
     func flagTapped(_ number: Int) {
         if number == correctAnswer {
             scoreTitle = "Correct"
+            scoreMessage = "Well done! Play again?"
             score += 1
         } else {
             tappedFlagIndex = number
             scoreTitle = "Wrong"
+            scoreMessage = "Wrong! That’s the flag of \(countries[tappedFlagIndex])"
         }
         showingScore = true
     }
